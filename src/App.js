@@ -1,5 +1,6 @@
 import "./App.css";
 import { useEffect, useState } from "react";
+import Search from "./Search";
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
 const REDIRECT_URI = "http://localhost:3000";
@@ -35,7 +36,6 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Spotify Recommender</h1>
         {!token ? (
           <a
             href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
@@ -45,6 +45,10 @@ function App() {
         ) : (
           <button onClick={logout}>Logout</button>
         )}
+        <h1>Spotify Recommender</h1>
+        <section>
+          <Search token={token} />
+        </section>
       </header>
     </div>
   );
