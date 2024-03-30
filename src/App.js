@@ -1,56 +1,23 @@
 import "./App.css";
-import { useEffect, useState } from "react";
-import Search from "./Search";
-
-const CLIENT_ID = process.env.REACT_APP_CLIENT_ID;
-const REDIRECT_URI = "http://localhost:3000";
-const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
-const RESPONSE_TYPE = "token";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./Home";
 
 function App() {
-  const [token, setToken] = useState("");
-
-  useEffect(() => {
-    const hash = window.location.hash;
-    let token = window.localStorage.getItem("token");
-
-    if (!token && hash) {
-      token = hash
-        .substring(1)
-        .split("&")
-        .find((elem) => elem.startsWith("access_token"))
-        .split("=")[1];
-
-      window.location.hash = "";
-      window.localStorage.setItem("token", token);
-    }
-
-    setToken(token);
-  }, []);
-
-  const logout = () => {
-    setToken("");
-    window.localStorage.removeItem("token");
+  const handleLogin = () => {
+    // Redirect to Spotify login route on the backend server
+    window.location.href = "http://localhost:3000/auth/login";
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        {!token ? (
-          <a
-            href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
-          >
-            Login to Spotify
-          </a>
-        ) : (
-          <button onClick={logout}>Logout</button>
-        )}
-        <h1>Spotify Recommender</h1>
-        <section>
-          <Search token={token} />
-        </section>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div>
+        <h1>My Spotify App</h1>
+        <button onClick={handleLogin}>Login with Spotify</button>
+        <Routes>
+          <Route path="/login" element={<Home />}></Route>
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
