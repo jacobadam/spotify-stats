@@ -16,6 +16,7 @@ const getTokenFromURL = () => {
 };
 
 function App() {
+  // eslint-disable-next-line
   const [spotifyToken, setSpotifyToken] = useState("");
   const [nowPlaying, setNowPlaying] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);

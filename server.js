@@ -5,9 +5,11 @@ const cors = require("cors");
 const querystring = require("querystring");
 const cookieParser = require("cookie-parser");
 
-const client_id = "9db327d41ea141a5927c3129599942bd";
-const client_secret = "8d1ce1c739b3457a9de2328d248595f7";
-const redirect_uri = "http://localhost:8888/callback";
+require("dotenv").config();
+
+const client_id = process.env.REACT_APP_CLIENT_ID;
+const client_secret = process.env.REACT_APP_CLIENT_SECRET;
+const redirect_uri = process.env.REACT_APP_RED_URI;
 
 const generateRandomString = (length) => {
   return crypto.randomBytes(60).toString("hex").slice(0, length);
