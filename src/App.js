@@ -2,13 +2,14 @@ import "./App.css";
 import React, { useState, useEffect } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import { getTokenFromURL } from "./utils";
+import Tabs from "./Tabs";
 
 const spotifyApi = new SpotifyWebApi();
 
 function App() {
   // eslint-disable-next-line
   const [spotifyToken, setSpotifyToken] = useState("");
-  const [topArtists, setTopArtists] = useState([]);
+  // const [topArtists, setTopArtists] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
 
   // console.log(topArtists);
@@ -24,14 +25,14 @@ function App() {
     }
   }, []);
 
-  console.log(spotifyApi);
+  // console.log(spotifyApi);
 
-  const getTopTracks = () => {
-    spotifyApi.getMyTopTracks().then((response) => {
-      const topArtistsData = response.items;
-      setTopArtists([...topArtistsData]);
-    });
-  };
+  // const getTopTracks = () => {
+  //   spotifyApi.getMyTopTracks().then((response) => {
+  //     const topArtistsData = response.items;
+  //     setTopArtists([...topArtistsData]);
+  //   });
+  // };
 
   // console.log(topArtists[0]);
 
@@ -57,11 +58,13 @@ function App() {
             </button>
           )}
         </>
-        {loggedIn && (
+        {/* {loggedIn && (
           <button onClick={() => getTopTracks()}>Get Top Tracks</button>
-        )}
+        )} */}
 
-        {loggedIn && topArtists.length > 0 && (
+        <Tabs loggedIn={loggedIn} />
+
+        {/* {loggedIn && topArtists.length > 0 && (
           <ul>
             {topArtists.map((topArtist) => (
               <div key={topArtist.id}>
@@ -69,7 +72,7 @@ function App() {
               </div>
             ))}
           </ul>
-        )}
+        )} */}
       </header>
     </div>
   );
