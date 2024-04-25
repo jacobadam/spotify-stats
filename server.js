@@ -49,7 +49,7 @@ app.get("/callback", function (req, res) {
 
   if (state === null || state !== storedState) {
     res.redirect(
-      "/" +
+      "/#" +
         querystring.stringify({
           error: "state_mismatch",
         })
@@ -86,7 +86,7 @@ app.get("/callback", function (req, res) {
           console.log(body);
         });
         res.redirect(
-          "http://localhost:3000/" +
+          "http://localhost:3000/#" +
             querystring.stringify({
               access_token: access_token,
               refresh_token: refresh_token,
@@ -94,7 +94,7 @@ app.get("/callback", function (req, res) {
         );
       } else {
         res.redirect(
-          "http://localhost:3000/" +
+          "http://localhost:3000/#" +
             querystring.stringify({
               error: "invalid_token",
             })
