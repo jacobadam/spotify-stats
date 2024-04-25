@@ -28,7 +28,8 @@ app.get("/login", function (req, res) {
   const state = generateRandomString(16);
   res.cookie(stateKey, state);
 
-  const scope = "user-read-private user-read-email user-read-playback-state";
+  const scope =
+    "user-read-private user-read-email user-read-playback-state user-top-read";
   res.redirect(
     "https://accounts.spotify.com/authorize?" +
       querystring.stringify({

@@ -51,3 +51,8 @@ a:active {
   text-decoration: none;
   color: #1db954;
 }
+
+.loginButton,
+.logoutButton {
+  margin-bottom: 30px;
+}

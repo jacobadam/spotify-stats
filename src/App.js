@@ -1,25 +1,17 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
+import { getTokenFromURL } from "./utils";
 
 const spotifyApi = new SpotifyWebApi();
-
-const getTokenFromURL = () => {
-  return window.location.hash
-    .substring(1)
-    .split("&")
-    .reduce((initial, item) => {
-      let parts = item.split("=");
-      initial[parts[0]] = decodeURIComponent(parts[1]);
-      return initial;
-    }, {});
-};
 
 function App() {
   // eslint-disable-next-line
   const [spotifyToken, setSpotifyToken] = useState("");
-  const [nowPlaying, setNowPlaying] = useState({});
+  const [topArtists, setTopArtists] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
+
+  // console.log(topArtists);
 
   useEffect(() => {
     const tokenFromURL = getTokenFromURL().access_token;
@@ -32,15 +24,16 @@ function App() {
     }
   }, []);
 
-  const getNowPlaying = () => {
-    spotifyApi.getMyCurrentPlaybackState().then((response) => {
-      console.log(response);
-      setNowPlaying({
-        name: response.item.name,
-        albumArt: response.item.album.images[0].url,
-      });
+  console.log(spotifyApi);
+
+  const getTopTracks = () => {
+    spotifyApi.getMyTopTracks().then((response) => {
+      const topArtistsData = response.items;
+      setTopArtists([...topArtistsData]);
     });
   };
+
+  // console.log(topArtists[0]);
 
   const handleLogin = () => {
     window.location.href = "http://localhost:8888/login";
@@ -53,21 +46,29 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        {!loggedIn ? (
-          <button onClick={handleLogin}>Login to Spotify</button>
-        ) : (
-          <button onClick={handleLogout}>Logout</button>
-        )}
+        <>
+          {!loggedIn ? (
+            <button className="loginButton" onClick={handleLogin}>
+              Login to Spotify
+            </button>
+          ) : (
+            <button className="logoutButton" onClick={handleLogout}>
+              Logout
+            </button>
+          )}
+        </>
         {loggedIn && (
-          <>
-            <div>Now Playing: {nowPlaying.name}</div>
-            <div>
-              <img src={nowPlaying.albumArt} alt="album-art" />
-            </div>
-          </>
+          <button onClick={() => getTopTracks()}>Get Top Tracks</button>
         )}
-        {loggedIn && (
-          <button onClick={() => getNowPlaying()}>Now Playing</button>
+
+        {loggedIn && topArtists.length > 0 && (
+          <ul>
+            {topArtists.map((topArtist) => (
+              <div key={topArtist.id}>
+                {topArtist.artists[0].name} - {topArtist.name}
+              </div>
+            ))}
+          </ul>
         )}
       </header>
     </div>
