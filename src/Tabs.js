@@ -6,6 +6,7 @@ const spotifyApi = new SpotifyWebApi();
 
 function Tabs() {
   const [topTracks, setTopTracks] = useState([]);
+  const [topArtists, setTopArtists] = useState([]);
 
   const getTopTracks = () => {
     spotifyApi.getMyTopTracks().then((response) => {
@@ -14,9 +15,20 @@ function Tabs() {
     });
   };
 
+  const getMyTopArtists = () => {
+    spotifyApi.getMyTopArtists().then((response) => {
+      const topArtistData = response.items;
+      setTopArtists([...topArtistData]);
+    });
+  };
+
   function changeTab(event, spotifyStat) {
     if (spotifyStat === "topTracks") {
       getTopTracks();
+    }
+
+    if (spotifyStat === "topArtists") {
+      getMyTopArtists();
     }
 
     let i, tabcontent, tablinks;
@@ -68,6 +80,13 @@ function Tabs() {
 
       <div id="topArtists" className="tabcontent">
         <h3>Top Artists</h3>
+        {topArtists.length > 0 && (
+          <ul>
+            {topArtists.map((topArtist) => (
+              <div key={topArtist.id}>{topArtist.name}</div>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
