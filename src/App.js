@@ -23,13 +23,15 @@ function App() {
     }
   }, []);
 
-  // console.log(spotifyApi);
-
   return (
     <div className="App">
       <header className="App-header">
         <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-        <Tabs loggedIn={loggedIn} />
+        {loggedIn && (
+          <div>
+            <Tabs loggedIn={loggedIn} />
+          </div>
+        )}
       </header>
     </div>
   );

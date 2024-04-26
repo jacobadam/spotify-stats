@@ -4,7 +4,7 @@ import SpotifyWebApi from "spotify-web-api-js";
 
 const spotifyApi = new SpotifyWebApi();
 
-function Tabs({ loggedIn }) {
+function Tabs() {
   const [topTracks, setTopTracks] = useState([]);
 
   const getTopTracks = () => {
@@ -36,42 +36,40 @@ function Tabs({ loggedIn }) {
   }
 
   return (
-    loggedIn && (
-      <div>
-        <div className="tab">
-          <button
-            className="tablinks"
-            onClick={(event) => changeTab(event, "topTracks")}
-          >
-            Get Top Tracks
-          </button>
+    <div>
+      <div className="tab">
+        <button
+          className="tablinks"
+          onClick={(event) => changeTab(event, "topTracks")}
+        >
+          Get Top Tracks
+        </button>
 
-          <button
-            className="tablinks"
-            onClick={(event) => changeTab(event, "topArtists")}
-          >
-            Get Top Artists
-          </button>
-        </div>
-
-        <div id="topTracks" className="tabcontent">
-          <h3>Top Tracks</h3>
-          {topTracks.length > 0 && (
-            <ul>
-              {topTracks.map((topTrack) => (
-                <div key={topTrack.id}>
-                  {topTrack.artists[0].name} - {topTrack.name}
-                </div>
-              ))}
-            </ul>
-          )}
-        </div>
-
-        <div id="topArtists" className="tabcontent">
-          <h3>Top Artists</h3>
-        </div>
+        <button
+          className="tablinks"
+          onClick={(event) => changeTab(event, "topArtists")}
+        >
+          Get Top Artists
+        </button>
       </div>
-    )
+
+      <div id="topTracks" className="tabcontent">
+        <h3>Top Tracks</h3>
+        {topTracks.length > 0 && (
+          <ul>
+            {topTracks.map((topTrack) => (
+              <div key={topTrack.id}>
+                {topTrack.artists[0].name} - {topTrack.name}
+              </div>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      <div id="topArtists" className="tabcontent">
+        <h3>Top Artists</h3>
+      </div>
+    </div>
   );
 }
 
