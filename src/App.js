@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
 import { getTokenFromURL } from "./utils";
 import Tabs from "./Tabs";
+import Login from "./Login";
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -24,29 +25,10 @@ function App() {
 
   // console.log(spotifyApi);
 
-  const handleLogin = () => {
-    window.location.href = "http://localhost:8888/login";
-  };
-
-  const handleLogout = () => {
-    setLoggedIn(false);
-  };
-
   return (
     <div className="App">
       <header className="App-header">
-        <>
-          {!loggedIn ? (
-            <button className="loginButton" onClick={handleLogin}>
-              Login to Spotify
-            </button>
-          ) : (
-            <button className="logoutButton" onClick={handleLogout}>
-              Logout
-            </button>
-          )}
-        </>
-
+        <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
         <Tabs loggedIn={loggedIn} />
       </header>
     </div>
