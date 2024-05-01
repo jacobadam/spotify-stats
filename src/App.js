@@ -41,12 +41,12 @@ function App() {
             <div>Spotify Stats</div>
           )}
           <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+          {loggedIn && (
+            <div>
+              <Tabs loggedIn={loggedIn} />
+            </div>
+          )}
         </p>
-        {loggedIn && (
-          <div>
-            <Tabs loggedIn={loggedIn} />
-          </div>
-        )}
       </header>
     </div>
   );

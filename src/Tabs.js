@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./Tabs.css";
 import SpotifyWebApi from "spotify-web-api-js";
+import TopTracks from "./TopTracks";
+import TopArtists from "./TopArtists";
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -65,29 +67,8 @@ function Tabs() {
         </button>
       </div>
 
-      <div id="topTracks" className="tabcontent">
-        <h3>Top Tracks</h3>
-        {topTracks.length > 0 && (
-          <ul>
-            {topTracks.map((topTrack) => (
-              <div key={topTrack.id}>
-                {topTrack.artists[0].name} - {topTrack.name}
-              </div>
-            ))}
-          </ul>
-        )}
-      </div>
-
-      <div id="topArtists" className="tabcontent">
-        <h3>Top Artists</h3>
-        {topArtists.length > 0 && (
-          <ul>
-            {topArtists.map((topArtist) => (
-              <div key={topArtist.id}>{topArtist.name}</div>
-            ))}
-          </ul>
-        )}
-      </div>
+      <TopTracks topTracks={topTracks} />
+      <TopArtists topArtists={topArtists} />
     </div>
   );
 }
