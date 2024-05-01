@@ -1,4 +1,5 @@
 import { React } from "react";
+import "./Login.css";
 
 export default function Login({ loggedIn, setLoggedIn }) {
   const handleLogin = () => {
@@ -13,7 +14,7 @@ export default function Login({ loggedIn, setLoggedIn }) {
     <>
       {!loggedIn ? (
         <button className="loginButton" onClick={handleLogin}>
-          Login to Spotify
+          Login with Spotify
         </button>
       ) : (
         <button className="logoutButton" onClick={handleLogout}>

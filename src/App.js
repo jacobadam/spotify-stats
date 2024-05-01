@@ -4,6 +4,7 @@ import SpotifyWebApi from "spotify-web-api-js";
 import { getTokenFromURL } from "./utils";
 import Tabs from "./Tabs";
 import Login from "./Login";
+import spotifylogo from "./spotifylogo.png";
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -26,7 +27,21 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+        <div>
+          <img className="spotifylogo" src={spotifylogo} alt="Spotify Logo" />
+        </div>
+
+        <p className="loginBox">
+          {!loggedIn ? (
+            <div>
+              Please login with your spotify account, to see your track or
+              artist ranking!
+            </div>
+          ) : (
+            <div>Spotify Stats</div>
+          )}
+          <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+        </p>
         {loggedIn && (
           <div>
             <Tabs loggedIn={loggedIn} />

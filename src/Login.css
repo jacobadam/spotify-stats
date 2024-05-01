@@ -1,0 +1,8 @@
+.loginButton,
+.logoutButton {
+  display: flex;
+  margin: auto;
+  margin-top: 20px;
+  background: #1db954;
+  color: white;
+}
