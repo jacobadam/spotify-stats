@@ -34,13 +34,13 @@ a:active {
   border-radius: 25px;
   background: #212121;
   padding: 20px;
-  width: 80%;
+  width: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .spotifylogo {
-  width: 40%;
-  height: 40%;
+  width: 10%;
+  height: 10%;
 }
