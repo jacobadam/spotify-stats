@@ -31,7 +31,7 @@ function App() {
           <img className="spotifylogo" src={spotifylogo} alt="Spotify Logo" />
         </div>
 
-        <p className="loginBox">
+        <div className="loginBox">
           {!loggedIn ? (
             <div>
               Please login with your spotify account, to see your track or
@@ -46,7 +46,7 @@ function App() {
               <Tabs loggedIn={loggedIn} />
             </div>
           )}
-        </p>
+        </div>
       </header>
     </div>
   );

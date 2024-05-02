@@ -13,6 +13,15 @@ function Tabs() {
   const getTopTracks = () => {
     spotifyApi.getMyTopTracks().then((response) => {
       const topTracksData = response.items;
+      for (let i = 0; i < topTracksData.length; i++) {
+        if (topTracksData[i].artists.length > 1) {
+          let multipleArtists = topTracksData[i].artists;
+          let artistName = multipleArtists.map((artists) => {
+            return artists.name;
+          });
+          topTracksData[i].artists[0].name = [...artistName].join(", ");
+        }
+      }
       setTopTracks([...topTracksData]);
     });
   };
