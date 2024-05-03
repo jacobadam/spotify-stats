@@ -55,7 +55,7 @@ function Tabs() {
     }
 
     document.getElementById(spotifyStat).style.display = "block";
-    event.currentTarget.className += " active";
+    event.currentTarget.className += "active";
   }
 
   return (

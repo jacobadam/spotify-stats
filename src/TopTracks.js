@@ -6,7 +6,7 @@ export default function TopTracks({ topTracks }) {
     <div id="topTracks" className="tabcontent">
       <h3>Top Tracks (last 6 months)</h3>
       {topTracks.length > 0 && (
-        <table>
+        <table className="topTracksTable">
           {topTracks.map((topTrack, i) => (
             <tr className="artistRow" key={topTrack.id}>
               <td className="numberCount">{i + 1}</td>
