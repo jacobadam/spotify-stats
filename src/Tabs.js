@@ -51,11 +51,12 @@ function Tabs() {
 
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" active", "");
+      tablinks[i].classList.remove("active");
     }
 
+    event.currentTarget.classList.add("active");
+
     document.getElementById(spotifyStat).style.display = "block";
-    event.currentTarget.className += "active";
   }
 
   return (
@@ -65,14 +66,14 @@ function Tabs() {
           className="tablinks"
           onClick={(event) => changeTab(event, "topTracks")}
         >
-          Get Top Tracks
+          Top Tracks
         </button>
 
         <button
           className="tablinks"
           onClick={(event) => changeTab(event, "topArtists")}
         >
-          Get Top Artists
+          Top Artists
         </button>
       </div>
 
