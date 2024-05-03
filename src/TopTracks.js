@@ -9,7 +9,7 @@ export default function TopTracks({ topTracks }) {
         <table>
           {topTracks.map((topTrack, i) => (
             <tr className="artistRow" key={topTrack.id}>
-              <td>{i + 1}</td>
+              <td className="numberCount">{i + 1}</td>
               <td className="artistImage">
                 <img
                   alt="artist"
