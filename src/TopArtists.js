@@ -10,7 +10,12 @@ export default function TopArtists({ topArtists }) {
           {topArtists.map((topArtist, i) => (
             <div className="topArtistItem" key={topArtist.id}>
               <div className="artistImage">
-                <img alt="artist" width="100px" src={topArtist.images[0].url} />
+                <img
+                  alt="artist"
+                  width="100px"
+                  height="100px"
+                  src={topArtist.images[0].url}
+                />
               </div>
               <div className="artistName">
                 {i + 1}. {topArtist.name}

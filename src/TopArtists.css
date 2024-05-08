@@ -19,7 +19,6 @@
 .artistName {
   font-size: 12px;
   font-weight: bold;
-  text-align: center;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
