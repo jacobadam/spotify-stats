@@ -12,8 +12,8 @@ export default function TopArtists({ topArtists }) {
               <div className="artistImage">
                 <img
                   alt="artist"
-                  width="100px"
-                  height="100px"
+                  width="120px"
+                  height="120px"
                   src={topArtist.images[0].url}
                 />
               </div>
