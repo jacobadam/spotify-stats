@@ -38,7 +38,6 @@ function Tabs() {
   const getRecentlyPlayed = () => {
     spotifyApi.getMyRecentlyPlayedTracks().then((response) => {
       const recentlyPlayed = response.items;
-      console.log(recentlyPlayed);
       setRecentlyPlayed([...recentlyPlayed]);
     });
   };

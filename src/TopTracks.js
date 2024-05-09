@@ -19,8 +19,10 @@ export default function TopTracks({ topTracks }) {
                   />
                 </td>
                 <td className="topTrackDetail">
-                  <td className="topTrackArtist">{topTrack.name}</td>
-                  <td className="topTrackTitle">{topTrack.artists[0].name}</td>
+                  <span className="topTrackArtist">{topTrack.name}</span>
+                  <span className="topTrackTitle">
+                    {topTrack.artists[0].name}
+                  </span>
                 </td>
               </tr>
             ))}

@@ -26,7 +26,7 @@ export default function RecentlyPlayed({ recentlyPlayed }) {
           </thead>
           <tbody>
             {recentlyPlayed.map((recent, i) => (
-              <tr key={recent.track.id}>
+              <tr key={`${recent.track.id}-${i}`}>
                 <td className="trackName">
                   {i + 1}. {recent.track.name}
                 </td>
