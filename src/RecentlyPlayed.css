@@ -1,0 +1,22 @@
+.recentlyPlayedTable {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.recentlyPlayedTable th,
+.recentlyPlayedTable td {
+  padding: 8px;
+  text-align: left;
+  width: 33.33%;
+}
+
+.trackName,
+.artistName,
+.timePlayed {
+  font-size: 16px;
+}
+
+.artistName {
+  font-weight: bold;
+}
