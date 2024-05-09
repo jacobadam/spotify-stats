@@ -1,4 +1,5 @@
 import React from "react";
+import "./RecentlyPlayed.css";
 
 export default function RecentlyPlayed({ recentlyPlayed }) {
   const formatTimestamp = (timestamp) => {
@@ -15,27 +16,28 @@ export default function RecentlyPlayed({ recentlyPlayed }) {
     <div id="recentlyPlayed" className="tabcontent">
       <h3>Recently Played</h3>
       {recentlyPlayed.length > 0 && (
-        <div className="recentlyPlayedContainer">
-          {recentlyPlayed.map((recent, i) => (
-            <div className="recentlyPlayedItem" key={recent.track.id}>
-              {/* <div className="artistImage">
-                <img
-                  alt="artist"
-                  width="120px"
-                  height="120px"
-                  src={recent.images[0].url}
-                />
-              </div> */}
-              <div className="trackName">
-                {i + 1}. {recent.track.name}
-              </div>
-              <div className="artistName">{recent.track.artists[0].name}</div>
-              <div className="timePlayed">
-                {formatTimestamp(recent.played_at)}
-              </div>
-            </div>
-          ))}
-        </div>
+        <table className="recentlyPlayedTable">
+          <thead>
+            <tr>
+              <th>Track</th>
+              <th>Artist</th>
+              <th>Time Played</th>
+            </tr>
+          </thead>
+          <tbody>
+            {recentlyPlayed.map((recent, i) => (
+              <tr key={recent.track.id}>
+                <td className="trackName">
+                  {i + 1}. {recent.track.name}
+                </td>
+                <td className="artistName">{recent.track.artists[0].name}</td>
+                <td className="timePlayed">
+                  {formatTimestamp(recent.played_at)}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
     </div>
   );

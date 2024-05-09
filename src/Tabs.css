@@ -3,6 +3,7 @@
   margin-top: 30px;
   overflow: hidden;
   background-color: white;
+  display: flex; /* Use flexbox for layout */
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -12,10 +13,11 @@
   cursor: pointer;
   padding: 14px 16px;
   transition: 0.3s;
+  flex: 1; /* Make each button equally sized */
+  text-align: center; /* Center the text */
 }
 
 .tab button:hover {
-  /* background-color: #1db954; */
   color: white;
 }
 
@@ -35,4 +37,15 @@
 
 .tablinks {
   background-color: #b3b3b3;
+}
+
+/* Media query for responsiveness */
+@media screen and (max-width: 768px) {
+  .tab {
+    flex-direction: column; /* Stack tabs vertically */
+  }
+  .tab button {
+    flex: none; /* Reset the flex property */
+    width: 100%; /* Make buttons full width */
+  }
 }
