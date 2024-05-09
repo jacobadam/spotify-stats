@@ -3,12 +3,14 @@ import "./Tabs.css";
 import SpotifyWebApi from "spotify-web-api-js";
 import TopTracks from "./TopTracks";
 import TopArtists from "./TopArtists";
+import RecentlyPlayed from "./RecentlyPlayed";
 
 const spotifyApi = new SpotifyWebApi();
 
 function Tabs() {
   const [topTracks, setTopTracks] = useState([]);
   const [topArtists, setTopArtists] = useState([]);
+  const [recentlyPlayed, setRecentlyPlayed] = useState([]);
 
   const getTopTracks = () => {
     spotifyApi.getMyTopTracks().then((response) => {
@@ -33,6 +35,14 @@ function Tabs() {
     });
   };
 
+  const getRecentlyPlayed = () => {
+    spotifyApi.getMyRecentlyPlayedTracks().then((response) => {
+      const recentlyPlayed = response.items;
+      console.log(recentlyPlayed);
+      setRecentlyPlayed([...recentlyPlayed]);
+    });
+  };
+
   function changeTab(event, spotifyStat) {
     if (spotifyStat === "topTracks") {
       getTopTracks();
@@ -40,6 +50,10 @@ function Tabs() {
 
     if (spotifyStat === "topArtists") {
       getMyTopArtists();
+    }
+
+    if (spotifyStat === "recentlyPlayed") {
+      getRecentlyPlayed();
     }
 
     let i, tabcontent, tablinks;
@@ -75,10 +89,17 @@ function Tabs() {
         >
           Top Artists
         </button>
+        <button
+          className="tablinks"
+          onClick={(event) => changeTab(event, "recentlyPlayed")}
+        >
+          Recently Played
+        </button>
       </div>
 
       <TopTracks topTracks={topTracks} />
       <TopArtists topArtists={topArtists} />
+      <RecentlyPlayed recentlyPlayed={recentlyPlayed} />
     </div>
   );
 }
