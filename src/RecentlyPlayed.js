@@ -18,7 +18,7 @@ export default function RecentlyPlayed({ recentlyPlayed }) {
       {recentlyPlayed.length > 0 && (
         <table className="recentlyPlayedTable">
           <thead>
-            <tr>
+            <tr className="recentlyPlayedTitle">
               <th>Track</th>
               <th>Artist</th>
               <th>Time Played</th>
