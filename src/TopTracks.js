@@ -11,12 +11,8 @@ export default function TopTracks({ topTracks }) {
             {topTracks.map((topTrack, i) => (
               <tr className="artistRow" key={topTrack.id}>
                 <td className="numberCount">{i + 1}. </td>
-                <td className="artistImage">
-                  <img
-                    alt="artist"
-                    width="50px"
-                    src={topTrack.album.images[0].url}
-                  />
+                <td className="topTrackArtistImage">
+                  <img alt="artist" src={topTrack.album.images[0].url} />
                 </td>
                 <td className="topTrackDetail">
                   <span className="topTrackArtist">{topTrack.name}</span>
