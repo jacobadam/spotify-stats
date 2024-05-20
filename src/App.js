@@ -4,6 +4,7 @@ import SpotifyWebApi from "spotify-web-api-js";
 import { getTokenFromURL } from "./utils";
 import Tabs from "./Tabs";
 import Login from "./Login";
+import Dropdown from "./Dropdown";
 import spotifylogo from "./spotifylogo.png";
 
 const spotifyApi = new SpotifyWebApi();
@@ -26,11 +27,14 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <div>
-          <img className="spotifylogo" src={spotifylogo} alt="Spotify Logo" />
+      <header className="appHeader">
+        <img className="spotifyLogo" src={spotifylogo} alt="Spotify Logo" />
+        <div className="dropdownContainer">
+          <Dropdown />
         </div>
+      </header>
 
+      <div className="appContainer">
         <div className="loginBox">
           {!loggedIn ? (
             <div>
@@ -47,7 +51,7 @@ function App() {
             </div>
           )}
         </div>
-      </header>
+      </div>
     </div>
   );
 }
