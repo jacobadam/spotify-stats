@@ -1,4 +1,3 @@
-/* src/components/AccountDropdown.css */
 .account-dropdown {
   position: relative;
   display: inline-block;
@@ -7,6 +6,11 @@
 .account-button {
   font-size: 16px;
   cursor: pointer;
+  background: none;
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
 }
 
 .dropdown-menu {
@@ -30,4 +34,10 @@
 
 .dropdown-menu a:hover {
   background-color: #f1f1f1;
+}
+
+.arrow-icon {
+  width: 26px;
+  height: 26px;
+  filter: invert(1);
 }
