@@ -1,30 +1,10 @@
 import "./App.css";
-import React, { useState, useEffect } from "react";
-import SpotifyWebApi from "spotify-web-api-js";
-import { getTokenFromURL } from "./utils";
-import Tabs from "./Tabs";
-import Login from "./Login";
+import React from "react";
 import Dropdown from "./Dropdown";
 import spotifylogo from "./spotifylogo.png";
-
-const spotifyApi = new SpotifyWebApi();
+import HomePage from "./HomePage";
 
 function App() {
-  // eslint-disable-next-line
-  const [spotifyToken, setSpotifyToken] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
-
-  useEffect(() => {
-    const tokenFromURL = getTokenFromURL().access_token;
-    window.location.hash = "";
-
-    if (tokenFromURL) {
-      setSpotifyToken(tokenFromURL);
-      spotifyApi.setAccessToken(tokenFromURL);
-      setLoggedIn(true);
-    }
-  }, []);
-
   return (
     <div className="App">
       <header className="appHeader">
@@ -34,24 +14,7 @@ function App() {
         </div>
       </header>
 
-      <div className="appContainer">
-        <div className="loginBox">
-          {!loggedIn ? (
-            <div>
-              Please login with your spotify account, to see your track or
-              artist ranking!
-            </div>
-          ) : (
-            <div>Spotify Stats</div>
-          )}
-          <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-          {loggedIn && (
-            <div>
-              <Tabs loggedIn={loggedIn} />
-            </div>
-          )}
-        </div>
-      </div>
+      <HomePage />
     </div>
   );
 }
