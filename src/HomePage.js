@@ -27,11 +27,11 @@ export default function HomePage() {
       <div className="loginBox">
         {!loggedIn ? (
           <div>
-            Please login with your spotify account, to see your track or artist
-            ranking!
+            Please login with your Spotify account, to see your track or artist
+            ranking.
           </div>
         ) : (
-          <div>Spotify Stats</div>
+          <p>Spotify Stats</p>
         )}
         <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
         {loggedIn && (

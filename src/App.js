@@ -1,21 +1,24 @@
 import "./App.css";
 import React from "react";
-import Dropdown from "./Dropdown";
-import spotifylogo from "./spotifylogo.png";
 import HomePage from "./HomePage";
+import MyProfile from "./MyProfile";
+import Header from "./Header";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <header className="appHeader">
-        <img className="spotifyLogo" src={spotifylogo} alt="Spotify Logo" />
-        <div className="dropdownContainer">
-          <Dropdown />
-        </div>
-      </header>
+    <BrowserRouter>
+      <div className="App">
+        <Header />
 
-      <HomePage />
-    </div>
+        <Routes>
+          <Route>
+            <Route path="/" element={<HomePage />} />
+            <Route path="profile" element={<MyProfile />} />
+          </Route>
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 

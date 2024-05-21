@@ -1,0 +1,21 @@
+.appHeader {
+  background-color: #121212;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #212121;
+  padding: 20px 20px;
+  position: relative;
+}
+
+.spotifyLogo {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: auto;
+}
+
+.dropdownContainer {
+  margin-left: auto;
+}
