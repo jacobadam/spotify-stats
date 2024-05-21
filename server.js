@@ -16,12 +16,18 @@ const generateRandomString = (length) => {
 };
 
 const stateKey = "spotify_auth_state";
+let userData = null;
 
 const app = express();
 
 app
   .use(express.static(__dirname + "/public"))
-  .use(cors())
+  .use(
+    cors({
+      origin: "http://localhost:3000",
+      credentials: true,
+    })
+  )
   .use(cookieParser());
 
 app.get("/login", function (req, res) {
@@ -82,16 +88,26 @@ app.get("/callback", function (req, res) {
           headers: { Authorization: "Bearer " + access_token },
           json: true,
         };
+
         request.get(options, function (error, response, body) {
-          console.log(body);
+          if (!error && response.statusCode === 200) {
+            userData = body;
+            res.redirect(
+              "http://localhost:3000/#" +
+                querystring.stringify({
+                  access_token: access_token,
+                  refresh_token: refresh_token,
+                })
+            );
+          } else {
+            res.redirect(
+              "http://localhost:3000/#" +
+                querystring.stringify({
+                  error: "failed_to_fetch_user_info",
+                })
+            );
+          }
         });
-        res.redirect(
-          "http://localhost:3000/#" +
-            querystring.stringify({
-              access_token: access_token,
-              refresh_token: refresh_token,
-            })
-        );
       } else {
         res.redirect(
           "http://localhost:3000/#" +
@@ -131,6 +147,14 @@ app.get("/refresh_token", function (req, res) {
       });
     }
   });
+});
+
+app.get("/profile", (req, res) => {
+  if (userData) {
+    res.json(userData);
+  } else {
+    res.status(404).json({ error: "User data not found" });
+  }
 });
 
 console.log("Listening on 8888");
