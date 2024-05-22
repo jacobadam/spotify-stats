@@ -6,6 +6,7 @@
   background: #212121;
   padding: 20px 20px;
   position: relative;
+  min-height: 40px;
 }
 
 .spotifyLogo {
