@@ -2,8 +2,11 @@ import "./HomePage.css";
 import React from "react";
 import Tabs from "./Tabs";
 import Login from "./Login";
+import { useAuth } from "./Authentication";
 
-export default function HomePage({ loggedIn, setLoggedIn }) {
+export default function HomePage() {
+  const { loggedIn } = useAuth();
+
   return (
     <div className="appContainer">
       <div className="loginBox">
@@ -15,7 +18,7 @@ export default function HomePage({ loggedIn, setLoggedIn }) {
         ) : (
           <p>Spotify Stats</p>
         )}
-        <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+        <Login loggedIn={loggedIn} />
         {loggedIn && (
           <div>
             <Tabs loggedIn={loggedIn} />

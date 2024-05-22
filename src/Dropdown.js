@@ -2,10 +2,12 @@ import React, { useState, useRef, useEffect } from "react";
 import "./Dropdown.css";
 import downArrow from "./down-arrow.png";
 import upArrow from "./up-arrow.png";
+import { useAuth } from "./Authentication";
 
 const AccountDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const timeoutRef = useRef(null);
+  const { logout } = useAuth();
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -21,6 +23,11 @@ const AccountDropdown = () => {
     timeoutRef.current = setTimeout(() => {
       setIsOpen(false);
     }, 300);
+  };
+
+  const handleLogout = (e) => {
+    e.preventDefault();
+    logout();
   };
 
   useEffect(() => {
@@ -48,7 +55,9 @@ const AccountDropdown = () => {
       {isOpen && (
         <div className="dropdown-menu">
           <a href="/profile">Profile</a>
-          <a href="/logout">Logout</a>
+          <a href="/logout" onClick={handleLogout}>
+            Logout
+          </a>
         </div>
       )}
     </div>

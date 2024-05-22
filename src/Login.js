@@ -1,14 +1,13 @@
-import { React } from "react";
 import "./Login.css";
+import { React } from "react";
+import { useAuth } from "./Authentication";
 
-export default function Login({ loggedIn, setLoggedIn }) {
+export default function Login() {
+  const { loggedIn } = useAuth();
+
   const handleLogin = () => {
     window.location.href = "http://localhost:8888/login";
   };
-
-  // const handleLogout = () => {
-  //   setLoggedIn(false);
-  // };
 
   return (
     <>
@@ -17,12 +16,6 @@ export default function Login({ loggedIn, setLoggedIn }) {
           Login with Spotify
         </button>
       )}
-
-      {/* {loggedIn && (
-        <button className="loginButton" onClick={handleLogout}>
-          Login with Spotify
-        </button>
-      )} */}
     </>
   );
 }

@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useAuth } from "./Authentication";
 
 const MyProfile = () => {
   const [accountData, setAccountData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const { loggedIn } = useAuth();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,22 +29,28 @@ const MyProfile = () => {
 
   return (
     <div>
-      <h1>Account Information</h1>
-      <p>Display Name: {accountData.display_name}</p>
-      <p>Email: {accountData.email}</p>
-      <p>
-        Profile URL:{" "}
-        <a
-          href={accountData.external_urls.spotify}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {accountData.external_urls.spotify}
-        </a>
-      </p>
-      <p>Followers: {JSON.stringify(accountData.followers.total)}</p>
-      <p>Country: {accountData.country}</p>
-      <p>Plan: {accountData.product}</p>
+      {loggedIn ? (
+        <div>
+          <h1>Account Information</h1>
+          <p>Display Name: {accountData.display_name}</p>
+          <p>Email: {accountData.email}</p>
+          <p>
+            Profile URL:{" "}
+            <a
+              href={accountData.external_urls.spotify}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {accountData.external_urls.spotify}
+            </a>
+          </p>
+          <p>Followers: {JSON.stringify(accountData.followers.total)}</p>
+          <p>Country: {accountData.country}</p>
+          <p>Plan: {accountData.product}</p>
+        </div>
+      ) : (
+        <p>You are not logged in. Please log in to view your profile.</p>
+      )}
     </div>
   );
 };
