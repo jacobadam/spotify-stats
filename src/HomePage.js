@@ -18,10 +18,10 @@ export default function HomePage() {
         ) : (
           <p>Spotify Stats</p>
         )}
-        <Login loggedIn={loggedIn} />
+        <Login page="homepage" />
         {loggedIn && (
           <div>
-            <Tabs loggedIn={loggedIn} />
+            <Tabs />
           </div>
         )}
       </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "./Authentication";
+import Login from "./Login";
 
 const MyProfile = () => {
   const [accountData, setAccountData] = useState(null);
@@ -49,7 +50,7 @@ const MyProfile = () => {
           <p>Plan: {accountData.product}</p>
         </div>
       ) : (
-        <p>You are not logged in. Please log in to view your profile.</p>
+        <Login page="profile" />
       )}
     </div>
   );

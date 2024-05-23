@@ -2,11 +2,18 @@ import "./Login.css";
 import { React } from "react";
 import { useAuth } from "./Authentication";
 
-export default function Login() {
+export default function Login({ page }) {
   const { loggedIn } = useAuth();
 
   const handleLogin = () => {
-    window.location.href = "http://localhost:8888/login";
+    console.log(page);
+    if (page === "homepage") {
+      window.location.href = "http://localhost:8888/login";
+    }
+
+    if (page === "profile") {
+      window.location.href = "http://localhost:8888/profile";
+    }
   };
 
   return (
