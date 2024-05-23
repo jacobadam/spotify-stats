@@ -20,7 +20,6 @@ export default function Header() {
         src={spotifylogo}
         alt="Spotify Logo"
         onClick={handleLogoClick}
-        style={{ cursor: "pointer" }}
       />
       {loggedIn && (
         <div className="dropdownContainer">
