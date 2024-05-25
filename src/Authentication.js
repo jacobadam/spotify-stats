@@ -23,8 +23,10 @@ export const AuthProvider = ({ children }) => {
       spotifyApi.setAccessToken(tokenFromURL);
       setLoggedIn(true);
       localStorage.setItem("spotifyToken", tokenFromURL);
+    } else if (spotifyToken) {
+      spotifyApi.setAccessToken(spotifyToken);
     }
-  }, []);
+  }, [spotifyToken]);
 
   const logout = () => {
     setSpotifyToken("");
