@@ -20,6 +20,7 @@ export default function Header() {
         src={spotifylogo}
         alt="Spotify Logo"
         onClick={handleLogoClick}
+        aria-label="go to homepage"
       />
       {loggedIn && (
         <div className="dropdownContainer">

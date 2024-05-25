@@ -6,7 +6,6 @@ export default function Login({ page }) {
   const { loggedIn } = useAuth();
 
   const handleLogin = () => {
-    console.log(page);
     if (page === "homepage") {
       window.location.href = "http://localhost:8888/login";
     }
@@ -19,7 +18,11 @@ export default function Login({ page }) {
   return (
     <>
       {!loggedIn && (
-        <button className="loginButton" onClick={handleLogin}>
+        <button
+          className="loginButton"
+          aria-label="login"
+          onClick={handleLogin}
+        >
           Login with Spotify
         </button>
       )}

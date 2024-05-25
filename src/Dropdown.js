@@ -44,7 +44,11 @@ const AccountDropdown = () => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <button onClick={toggleDropdown} className="account-button">
+      <button
+        onClick={toggleDropdown}
+        aria-label="Account dropdown"
+        className="account-button"
+      >
         Account
         <img
           src={isOpen ? upArrow : downArrow}
@@ -54,8 +58,10 @@ const AccountDropdown = () => {
       </button>
       {isOpen && (
         <div className="dropdown-menu">
-          <a href="/profile">Profile</a>
-          <a href="/logout" onClick={handleLogout}>
+          <a href="/profile" aria-label="profile">
+            Profile
+          </a>
+          <a href="/logout" aria-label="logout" onClick={handleLogout}>
             Logout
           </a>
         </div>

@@ -77,6 +77,7 @@ function Tabs() {
       <div className="tab">
         <button
           className="tablinks"
+          aria-label="top tracks"
           onClick={(event) => changeTab(event, "topTracks")}
         >
           Top Tracks
@@ -84,12 +85,14 @@ function Tabs() {
 
         <button
           className="tablinks"
+          aria-label="top artists"
           onClick={(event) => changeTab(event, "topArtists")}
         >
           Top Artists
         </button>
         <button
           className="tablinks"
+          aria-label="recently played"
           onClick={(event) => changeTab(event, "recentlyPlayed")}
         >
           Recently Played
