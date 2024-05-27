@@ -37,7 +37,7 @@
   background-color: #b3b3b3;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 600px) {
   .tab {
     flex-direction: column;
   }
