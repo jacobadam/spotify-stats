@@ -40,24 +40,24 @@ const AccountDropdown = () => {
 
   return (
     <div
-      className="account-dropdown"
+      className="accountDropdown"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
       <button
         onClick={toggleDropdown}
         aria-label="Account dropdown"
-        className="account-button"
+        className="accountButton"
       >
         Account
         <img
           src={isOpen ? upArrow : downArrow}
           alt={isOpen ? "up arrow" : "down arrow"}
-          className="arrow-icon"
+          className="arrowIcon"
         />
       </button>
       {isOpen && (
-        <div className="dropdown-menu">
+        <div className="dropdownMenu">
           <a href="/profile" aria-label="profile">
             Profile
           </a>
