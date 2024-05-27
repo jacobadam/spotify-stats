@@ -47,4 +47,7 @@
     flex: none;
     width: 100%;
   }
+  .tabcontent {
+    padding: 6px 2px;
+  }
 }
