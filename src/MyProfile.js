@@ -1,3 +1,4 @@
+import "./MyProfile.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "./Authentication";
@@ -25,29 +26,53 @@ const MyProfile = () => {
     fetchData();
   }, []);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  if (loading) return <div className="loading">Loading...</div>;
+  if (error) return <div className="error">Error: {error.message}</div>;
 
   return (
     <div>
       {loggedIn ? (
-        <div>
+        <div className="myProfile">
           <h1>Account Information</h1>
-          <p>Display Name: {accountData.display_name}</p>
-          <p>Email: {accountData.email}</p>
-          <p>
-            Profile URL:{" "}
+          <p className="displayName">
+            <strong>
+              Display Name:
+              <strong />
+            </strong>{" "}
+            {accountData?.display_name}
+          </p>
+          <p className="emailAddress">
+            <strong>Email:</strong> {accountData?.email}
+          </p>
+          <p className="profileURL">
+            <strong>Profile URL:</strong>{" "}
             <a
-              href={accountData.external_urls.spotify}
+              href={accountData?.external_urls.spotify}
               target="_blank"
               rel="noopener noreferrer"
             >
-              {accountData.external_urls.spotify}
+              {accountData?.external_urls.spotify}
             </a>
           </p>
-          <p>Followers: {JSON.stringify(accountData.followers.total)}</p>
-          <p>Country: {accountData.country}</p>
-          <p>Plan: {accountData.product}</p>
+          <p className="followers">
+            <strong>Followers: </strong>
+            {JSON.stringify(accountData?.followers.total)}
+          </p>
+          <p className="country">
+            <strong>Country: </strong>
+            {accountData?.country}
+          </p>
+          <p className="planType">
+            <strong>Plan: </strong>
+            {accountData?.product}
+          </p>
+          {accountData?.images[0]?.url && (
+            <img
+              alt="profile"
+              className="profilePicture"
+              src={accountData?.images[1].url}
+            />
+          )}
         </div>
       ) : (
         <Login page="profile" />
