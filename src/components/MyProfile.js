@@ -1,4 +1,4 @@
-import "./MyProfile.css";
+import "../css/MyProfile.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "./Authentication";

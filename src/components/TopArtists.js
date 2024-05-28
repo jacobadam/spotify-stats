@@ -1,5 +1,5 @@
 import React from "react";
-import "./TopArtists.css";
+import "../css/TopArtists.css";
 
 export default function TopArtists({ topArtists }) {
   return (

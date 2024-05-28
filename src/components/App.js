@@ -1,4 +1,4 @@
-import "./App.css";
+import "../css/App.css";
 import React from "react";
 import HomePage from "./HomePage";
 import MyProfile from "./MyProfile";

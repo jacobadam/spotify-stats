@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
-import "./Dropdown.css";
-import downArrow from "./down-arrow.png";
-import upArrow from "./up-arrow.png";
+import "../css/Dropdown.css";
+import downArrow from "../icons/down-arrow.png";
+import upArrow from "../icons/up-arrow.png";
 import { useAuth } from "./Authentication";
 
 const AccountDropdown = () => {

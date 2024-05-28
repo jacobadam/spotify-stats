@@ -1,5 +1,5 @@
 import React from "react";
-import "./TopTracks.css";
+import "../css/TopTracks.css";
 
 export default function TopTracks({ topTracks }) {
   return (

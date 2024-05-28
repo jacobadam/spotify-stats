@@ -1,7 +1,7 @@
-import "./Header.css";
+import "../css/Header.css";
 import React from "react";
 import Dropdown from "./Dropdown";
-import spotifylogo from "./spotifylogo.png";
+import spotifylogo from "../icons/spotifylogo.png";
 import { useAuth } from "./Authentication";
 import { useNavigate } from "react-router-dom";
 

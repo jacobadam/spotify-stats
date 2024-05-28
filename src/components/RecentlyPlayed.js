@@ -1,5 +1,5 @@
 import React from "react";
-import "./RecentlyPlayed.css";
+import "../css/RecentlyPlayed.css";
 
 export default function RecentlyPlayed({ recentlyPlayed }) {
   const formatTimestamp = (timestamp) => {

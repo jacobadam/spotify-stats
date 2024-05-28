@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import SpotifyWebApi from "spotify-web-api-js";
-import { getTokenFromURL } from "./utils";
+import { getTokenFromURL } from "../utils";
 
 const AuthContext = createContext();
 

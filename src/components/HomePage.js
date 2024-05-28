@@ -1,4 +1,4 @@
-import "./HomePage.css";
+import "../css/HomePage.css";
 import React from "react";
 import Tabs from "./Tabs";
 import Login from "./Login";

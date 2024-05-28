@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Tabs.css";
+import "../css/Tabs.css";
 import SpotifyWebApi from "spotify-web-api-js";
 import TopTracks from "./TopTracks";
 import TopArtists from "./TopArtists";
