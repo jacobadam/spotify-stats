@@ -35,7 +35,7 @@
   }
 
   .topTrackDetail {
-    padding-left: 0;
+    padding: 4px 0 0 6px;
   }
 
   .topTrackArtist {
@@ -53,6 +53,17 @@
 
   .numberCount {
     padding-right: 0;
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .topTrackDetail {
+    padding: 0 0 0 6px;
+  }
+
+  .numberCount {
+    padding-right: 2px;
     font-size: 8px;
   }
 }
