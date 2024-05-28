@@ -17,11 +17,11 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-  padding-left: 26px;
+  padding: 8px 0 0 26px;
 }
 
 .topTrackArtist {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: bold;
 }
 
