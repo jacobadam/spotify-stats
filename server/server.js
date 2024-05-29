@@ -9,7 +9,13 @@ require("dotenv").config();
 
 const client_id = process.env.REACT_APP_CLIENT_ID;
 const client_secret = process.env.REACT_APP_CLIENT_SECRET;
-const redirect_uri = process.env.REACT_APP_RED_URI;
+const local_redirect_uri = process.env.REACT_APP_RED_URI_LOCAL;
+const prod_redirect_uri = process.env.REACT_APP_RED_URI_PROD;
+
+const redirect_uri =
+  process.env.NODE_ENV === "production"
+    ? prod_redirect_uri
+    : local_redirect_uri;
 
 const generateRandomString = (length) => {
   return crypto.randomBytes(60).toString("hex").slice(0, length);

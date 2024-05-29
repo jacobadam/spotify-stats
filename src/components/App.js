@@ -3,13 +3,13 @@ import React from "react";
 import HomePage from "./HomePage";
 import MyProfile from "./MyProfile";
 import Header from "./Header";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./Authentication";
 
 function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <HashRouter>
         <div className="App">
           <Header />
           <Routes>
@@ -17,7 +17,7 @@ function App() {
             <Route path="/profile" element={<MyProfile />} />
           </Routes>
         </div>
-      </BrowserRouter>
+      </HashRouter>
     </AuthProvider>
   );
 }
