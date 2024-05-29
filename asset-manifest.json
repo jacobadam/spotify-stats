@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/spotify-stats/static/css/main.0ddcd6fc.css",
-    "main.js": "/spotify-stats/static/js/main.e30b0fba.js",
+    "main.js": "/spotify-stats/static/js/main.ab66b778.js",
     "static/media/circular-std-2.otf": "/spotify-stats/static/media/circular-std-2.0b7e453ee6839768f454.otf",
     "static/media/spotifylogo.png": "/spotify-stats/static/media/spotifylogo.8eef091b1fba251ca310.png",
     "index.html": "/spotify-stats/index.html",
     "main.0ddcd6fc.css.map": "/spotify-stats/static/css/main.0ddcd6fc.css.map",
-    "main.e30b0fba.js.map": "/spotify-stats/static/js/main.e30b0fba.js.map"
+    "main.ab66b778.js.map": "/spotify-stats/static/js/main.ab66b778.js.map"
   },
   "entrypoints": [
     "static/css/main.0ddcd6fc.css",
-    "static/js/main.e30b0fba.js"
+    "static/js/main.ab66b778.js"
   ]
 }
