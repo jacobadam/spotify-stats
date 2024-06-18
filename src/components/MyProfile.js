@@ -75,7 +75,7 @@ const MyProfile = () => {
           )}
         </div>
       ) : (
-        <Login page="profile" />
+        <Login />
       )}
     </div>
   );
