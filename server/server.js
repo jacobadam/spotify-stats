@@ -4,6 +4,7 @@ const crypto = require("crypto");
 const cors = require("cors");
 const querystring = require("querystring");
 const cookieParser = require("cookie-parser");
+const path = require("path");
 
 require("dotenv").config();
 
@@ -27,10 +28,13 @@ let userData = null;
 const app = express();
 
 app
-  .use(express.static(__dirname + "/public"))
+  .use(express.static(path.join(__dirname, "../client/build")))
   .use(
     cors({
-      origin: "http://localhost:3000",
+      origin:
+        process.env.NODE_ENV === "production"
+          ? "https://spotify-stats-jn.netlify.app/"
+          : "http://localhost:3000",
       credentials: true,
     })
   )
@@ -79,7 +83,7 @@ app.get("/callback", function (req, res) {
         "content-type": "application/x-www-form-urlencoded",
         Authorization:
           "Basic " +
-          new Buffer.from(client_id + ":" + client_secret).toString("base64"),
+          Buffer.from(client_id + ":" + client_secret).toString("base64"),
       },
       json: true,
     };
@@ -99,7 +103,10 @@ app.get("/callback", function (req, res) {
           if (!error && response.statusCode === 200) {
             userData = body;
             res.redirect(
-              "http://localhost:3000/#" +
+              (process.env.NODE_ENV === "production"
+                ? "https://spotify-stats-jn.netlify.app/"
+                : "http://localhost:3000") +
+                "/#" +
                 querystring.stringify({
                   access_token: access_token,
                   refresh_token: refresh_token,
@@ -107,7 +114,10 @@ app.get("/callback", function (req, res) {
             );
           } else {
             res.redirect(
-              "http://localhost:3000/#" +
+              (process.env.NODE_ENV === "production"
+                ? "https://spotify-stats-jn.netlify.app/"
+                : "http://localhost:3000") +
+                "/#" +
                 querystring.stringify({
                   error: "failed_to_fetch_user_info",
                 })
@@ -116,7 +126,10 @@ app.get("/callback", function (req, res) {
         });
       } else {
         res.redirect(
-          "http://localhost:3000/#" +
+          (process.env.NODE_ENV === "production"
+            ? "https://spotify-stats-jn.netlify.app/"
+            : "http://localhost:3000") +
+            "/#" +
             querystring.stringify({
               error: "invalid_token",
             })
@@ -134,7 +147,7 @@ app.get("/refresh_token", function (req, res) {
       "content-type": "application/x-www-form-urlencoded",
       Authorization:
         "Basic " +
-        new Buffer.from(client_id + ":" + client_secret).toString("base64"),
+        Buffer.from(client_id + ":" + client_secret).toString("base64"),
     },
     form: {
       grant_type: "refresh_token",
@@ -163,5 +176,11 @@ app.get("/profile", (req, res) => {
   }
 });
 
-console.log("Listening on 8888");
-app.listen(8888);
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+});
+
+const PORT = process.env.PORT || 8888;
+app.listen(PORT, () => {
+  console.log(`Listening on ${PORT}`);
+});
