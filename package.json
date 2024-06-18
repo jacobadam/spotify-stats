@@ -25,10 +25,11 @@
     "spotify-web-api-js": "^1.5.2"
   },
   "scripts": {
+    "start": "node server/server.js",
+    "heroku-postbuild": "npm install --prefix server && npm install --prefix src && npm run build --prefix src",
+    "build": "react-scripts build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -33,7 +33,7 @@ app
     cors({
       origin:
         process.env.NODE_ENV === "production"
-          ? "https://spotify-stats-jn.netlify.app/"
+          ? "https://spotify-stats-jn.netlify.app"
           : "http://localhost:3000",
       credentials: true,
     })
@@ -104,7 +104,7 @@ app.get("/callback", function (req, res) {
             userData = body;
             res.redirect(
               (process.env.NODE_ENV === "production"
-                ? "https://spotify-stats-jn.netlify.app/"
+                ? "https://spotify-stats-jn.netlify.app"
                 : "http://localhost:3000") +
                 "/#" +
                 querystring.stringify({
@@ -115,7 +115,7 @@ app.get("/callback", function (req, res) {
           } else {
             res.redirect(
               (process.env.NODE_ENV === "production"
-                ? "https://spotify-stats-jn.netlify.app/"
+                ? "https://spotify-stats-jn.netlify.app"
                 : "http://localhost:3000") +
                 "/#" +
                 querystring.stringify({
@@ -127,7 +127,7 @@ app.get("/callback", function (req, res) {
       } else {
         res.redirect(
           (process.env.NODE_ENV === "production"
-            ? "https://spotify-stats-jn.netlify.app/"
+            ? "https://spotify-stats-jn.netlify.app"
             : "http://localhost:3000") +
             "/#" +
             querystring.stringify({
