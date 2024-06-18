@@ -23,5 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 #spotify client key
+.env
 .env.local
 .env.production
