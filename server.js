@@ -18,9 +18,8 @@ const redirect_uri =
     ? prod_redirect_uri
     : local_redirect_uri;
 
-const generateRandomString = (length) => {
-  return crypto.randomBytes(60).toString("hex").slice(0, length);
-};
+const generateRandomString = (length) =>
+  crypto.randomBytes(60).toString("hex").slice(0, length);
 
 const stateKey = "spotify_auth_state";
 let userData = null;
@@ -28,7 +27,7 @@ let userData = null;
 const app = express();
 
 app
-  .use(express.static(path.join(__dirname, "../client/build")))
+  .use(express.static(path.join(__dirname, "build")))
   .use(
     cors({
       origin:
@@ -40,7 +39,7 @@ app
   )
   .use(cookieParser());
 
-app.get("/login", function (req, res) {
+app.get("/login", (req, res) => {
   const state = generateRandomString(16);
   res.cookie(stateKey, state);
 
@@ -58,7 +57,7 @@ app.get("/login", function (req, res) {
   );
 });
 
-app.get("/callback", function (req, res) {
+app.get("/callback", (req, res) => {
   const code = req.query.code || null;
   const state = req.query.state || null;
   const storedState = req.cookies ? req.cookies[stateKey] : null;
@@ -88,18 +87,16 @@ app.get("/callback", function (req, res) {
       json: true,
     };
 
-    request.post(authOptions, function (error, response, body) {
+    request.post(authOptions, (error, response, body) => {
       if (!error && response.statusCode === 200) {
-        const access_token = body.access_token,
-          refresh_token = body.refresh_token;
-
+        const { access_token, refresh_token } = body;
         const options = {
           url: "https://api.spotify.com/v1/me",
           headers: { Authorization: "Bearer " + access_token },
           json: true,
         };
 
-        request.get(options, function (error, response, body) {
+        request.get(options, (error, response, body) => {
           if (!error && response.statusCode === 200) {
             userData = body;
             res.redirect(
@@ -108,8 +105,8 @@ app.get("/callback", function (req, res) {
                 : "http://localhost:3000") +
                 "/#" +
                 querystring.stringify({
-                  access_token: access_token,
-                  refresh_token: refresh_token,
+                  access_token,
+                  refresh_token,
                 })
             );
           } else {
@@ -139,7 +136,7 @@ app.get("/callback", function (req, res) {
   }
 });
 
-app.get("/refresh_token", function (req, res) {
+app.get("/refresh_token", (req, res) => {
   const refresh_token = req.query.refresh_token;
   const authOptions = {
     url: "https://accounts.spotify.com/api/token",
@@ -156,14 +153,10 @@ app.get("/refresh_token", function (req, res) {
     json: true,
   };
 
-  request.post(authOptions, function (error, response, body) {
+  request.post(authOptions, (error, response, body) => {
     if (!error && response.statusCode === 200) {
-      const access_token = body.access_token,
-        refresh_token = body.refresh_token;
-      res.send({
-        access_token: access_token,
-        refresh_token: refresh_token,
-      });
+      const { access_token, refresh_token } = body;
+      res.send({ access_token, refresh_token });
     }
   });
 });
@@ -177,7 +170,7 @@ app.get("/profile", (req, res) => {
 });
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+  res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 const PORT = process.env.PORT || 8888;
