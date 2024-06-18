@@ -1,5 +1,5 @@
 import "../css/Login.css";
-import { React } from "react";
+import React from "react";
 import { useAuth } from "./Authentication";
 
 export default function Login() {
@@ -8,7 +8,7 @@ export default function Login() {
   const handleLogin = () => {
     const baseUrl =
       process.env.NODE_ENV === "production"
-        ? "https://spotify-stats-jn.netlify.app"
+        ? "https://spotify-stats-jn-1bf25a59a786.herokuapp.com"
         : "http://localhost:8888";
 
     window.location.href = `${baseUrl}/login`;
