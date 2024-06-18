@@ -14,7 +14,11 @@ const MyProfile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8888/profile");
+        const baseUrl =
+          process.env.NODE_ENV === "production"
+            ? "https://spotify-stats-jn-1bf25a59a786.herokuapp.com"
+            : "http://localhost:8888";
+        const response = await axios.get(`${baseUrl}/profile`);
         setAccountData(response.data);
       } catch (error) {
         setError(error);
@@ -56,7 +60,7 @@ const MyProfile = () => {
           </p>
           <p className="followers">
             <strong>Followers: </strong>
-            {JSON.stringify(accountData?.followers.total)}
+            {accountData?.followers.total}
           </p>
           <p className="country">
             <strong>Country: </strong>
