@@ -16,7 +16,7 @@ const MyProfile = () => {
       try {
         const baseUrl =
           process.env.NODE_ENV === "production"
-            ? "https://listening-stats-jn-d508a73704b2.herokuapp.com/callback"
+            ? "https://listening-stats-jn-d508a73704b2.herokuapp.com"
             : "http://localhost:8888";
         const response = await axios.get(`${baseUrl}/profile`);
         setAccountData(response.data);
