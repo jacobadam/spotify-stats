@@ -32,7 +32,7 @@ app
     cors({
       origin:
         process.env.NODE_ENV === "production"
-          ? "https://listening-stats-jn.netlify.app/"
+          ? "https://listening-stats-jn.netlify.app"
           : "http://localhost:3000",
       credentials: true,
     })
@@ -101,7 +101,7 @@ app.get("/callback", (req, res) => {
             userData = body;
             res.redirect(
               (process.env.NODE_ENV === "production"
-                ? "https://listening-stats-jn.netlify.app/"
+                ? "https://listening-stats-jn.netlify.app"
                 : "http://localhost:3000") +
                 "/#" +
                 querystring.stringify({
@@ -112,7 +112,7 @@ app.get("/callback", (req, res) => {
           } else {
             res.redirect(
               (process.env.NODE_ENV === "production"
-                ? "https://listening-stats-jn.netlify.app/"
+                ? "https://listening-stats-jn.netlify.app"
                 : "http://localhost:3000") +
                 "/#" +
                 querystring.stringify({
@@ -124,7 +124,7 @@ app.get("/callback", (req, res) => {
       } else {
         res.redirect(
           (process.env.NODE_ENV === "production"
-            ? "https://listening-stats-jn.netlify.app/"
+            ? "https://listening-stats-jn.netlify.app"
             : "http://localhost:3000") +
             "/#" +
             querystring.stringify({
