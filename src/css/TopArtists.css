@@ -39,6 +39,10 @@
     width: 100px;
     height: 100px;
   }
+
+  .artistName {
+    font-size: 20px;
+  }
 }
 
 @media screen and (max-width: 600px) {
@@ -50,5 +54,13 @@
   .topArtistImage img {
     width: 80px;
     height: 80px;
+  }
+
+  .artistName {
+    font-size: 18px;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 10px 0 10px 0;
   }
 }

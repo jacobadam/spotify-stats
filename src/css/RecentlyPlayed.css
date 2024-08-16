@@ -15,11 +15,11 @@
   padding-bottom: 20px;
 }
 
-.trackName,
-.artistName,
-.timePlayed {
+.recentlyPlayedTrackName,
+.recentlyPlayedArtistName,
+.recentlyPlayedTimePlayed {
   font-size: 16px;
-  font-weight: noram;
+  font-weight: normal;
 }
 
 .recentlyPlayedTitle {
@@ -36,16 +36,16 @@ tr {
     padding: 4px;
   }
 
-  .trackName,
-  .artistName,
-  .timePlayed {
-    font-size: 10px;
+  .recentlyPlayedTrackName,
+  .recentlyPlayedArtistName,
+  .recentlyPlayedTimePlayed {
+    font-size: 14px;
     font-weight: normal;
   }
 
   .recentlyPlayedTitle {
     font-weight: normal;
-    font-size: 10px;
+    font-size: 18px;
   }
 }
 
@@ -55,15 +55,15 @@ tr {
     padding: 4px;
   }
 
-  .trackName,
-  .artistName,
-  .timePlayed {
-    font-size: 4px;
+  .recentlyPlayedTrackName,
+  .recentlyPlayedArtistName,
+  .recentlyPlayedTimePlayed {
+    font-size: 8px;
     font-weight: normal;
   }
 
   .recentlyPlayedTitle {
     font-weight: normal;
-    font-size: 6px;
+    font-size: 10px;
   }
 }

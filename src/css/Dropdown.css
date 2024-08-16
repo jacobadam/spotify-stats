@@ -47,4 +47,9 @@
   .accountButton {
     font-size: 12px;
   }
+
+  .arrowIcon {
+    width: 16px;
+    height: 16px;
+  }
 }

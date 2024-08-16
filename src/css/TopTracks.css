@@ -39,16 +39,16 @@
   }
 
   .topTrackArtist {
-    font-size: 8px;
+    font-size: 12px;
   }
 
   .topTrackTitle {
-    font-size: 8px;
+    font-size: 12px;
   }
 
   .topTrackArtistImage img {
-    width: 25px;
-    height: 25px;
+    width: 32px;
+    height: 32px;
   }
 
   .numberCount {
