@@ -3,6 +3,7 @@ import React from "react";
 import HomePage from "./HomePage";
 import MyProfile from "./MyProfile";
 import Header from "./Header";
+import Login from "./Login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./Authentication";
 
@@ -15,6 +16,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/profile" element={<MyProfile />} />
+            <Route path="/login" element={<Login />} />
           </Routes>
         </div>
       </BrowserRouter>

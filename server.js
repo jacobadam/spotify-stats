@@ -5,6 +5,7 @@ const cors = require("cors");
 const querystring = require("querystring");
 const cookieParser = require("cookie-parser");
 const path = require("path");
+const session = require("express-session");
 
 require("dotenv").config();
 
@@ -19,10 +20,14 @@ const redirect_uri =
     : local_redirect_uri;
 
 const generateRandomString = (length) =>
-  crypto.randomBytes(60).toString("hex").slice(0, length);
+  crypto
+    .randomBytes(Math.ceil(length / 2))
+    .toString("hex")
+    .slice(0, length);
+
+const sessionSecret = generateRandomString(64);
 
 const stateKey = "spotify_auth_state";
-let userData = null;
 
 const app = express();
 
@@ -38,6 +43,15 @@ app
     })
   )
   .use(cookieParser());
+
+app.use(
+  session({
+    secret: sessionSecret,
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: process.env.NODE_ENV === "production" },
+  })
+);
 
 app.get("/login", (req, res) => {
   const state = generateRandomString(16);
@@ -98,17 +112,22 @@ app.get("/callback", (req, res) => {
 
         request.get(options, (error, response, body) => {
           if (!error && response.statusCode === 200) {
-            userData = body;
-            res.redirect(
-              (process.env.NODE_ENV === "production"
-                ? "https://listening-stats-jn.netlify.app"
-                : "http://localhost:3000") +
-                "/#" +
-                querystring.stringify({
-                  access_token,
-                  refresh_token,
-                })
-            );
+            req.session.userData = body;
+            req.session.save((err) => {
+              if (err) {
+                console.error("Failed to save session:", err);
+              }
+              res.redirect(
+                (process.env.NODE_ENV === "production"
+                  ? "https://listening-stats-jn.netlify.app"
+                  : "http://localhost:3000") +
+                  "/#" +
+                  querystring.stringify({
+                    access_token,
+                    refresh_token,
+                  })
+              );
+            });
           } else {
             res.redirect(
               (process.env.NODE_ENV === "production"
@@ -162,8 +181,8 @@ app.get("/refresh_token", (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
-  if (userData) {
-    res.json(userData);
+  if (req.session.userData) {
+    res.json(req.session.userData);
   } else {
     res.status(404).json({ error: "User data not found" });
   }
