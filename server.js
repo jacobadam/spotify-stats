@@ -31,6 +31,8 @@ const stateKey = "spotify_auth_state";
 
 const app = express();
 
+app.set("trust proxy", 1);
+
 app
   .use(express.static(path.join(__dirname, "build")))
   .use(
@@ -184,6 +186,7 @@ app.get("/refresh_token", (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
+  console.log("User Data->> ", req.session.userData);
   if (req.session.userData) {
     res.json(req.session.userData);
   } else {
