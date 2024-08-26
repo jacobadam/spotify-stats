@@ -14,8 +14,8 @@ const MyProfile = () => {
   useEffect(() => {
     const fetchData = async () => {
       const storedUserData = localStorage.getItem("userData");
+      console.log("Stored Data--->>>", storedUserData);
       if (storedUserData) {
-        console.log(storedUserData);
         setAccountData(JSON.parse(storedUserData));
         setLoading(false);
       } else {
