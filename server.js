@@ -130,6 +130,7 @@ app.get("/callback", (req, res) => {
                   querystring.stringify({
                     access_token,
                     refresh_token,
+                    userData: JSON.stringify(body),
                   })
               );
             });

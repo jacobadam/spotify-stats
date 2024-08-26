@@ -13,19 +13,27 @@ const MyProfile = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const baseUrl =
-          process.env.NODE_ENV === "production"
-            ? "https://listening-stats-jn-d508a73704b2.herokuapp.com"
-            : "http://localhost:8888";
-        const response = await axios.get(`${baseUrl}/profile`, {
-          withCredentials: true,
-        });
-        setAccountData(response.data);
-      } catch (error) {
-        setError(error);
-      } finally {
+      const storedUserData = localStorage.getItem("userData");
+      if (storedUserData) {
+        console.log(storedUserData);
+        setAccountData(JSON.parse(storedUserData));
         setLoading(false);
+      } else {
+        try {
+          const baseUrl =
+            process.env.NODE_ENV === "production"
+              ? "https://listening-stats-jn-d508a73704b2.herokuapp.com"
+              : "http://localhost:8888";
+          const response = await axios.get(`${baseUrl}/profile`, {
+            withCredentials: true,
+          });
+          setAccountData(response.data);
+          localStorage.setItem("userData", JSON.stringify(response.data));
+        } catch (error) {
+          setError(error);
+        } finally {
+          setLoading(false);
+        }
       }
     };
 
