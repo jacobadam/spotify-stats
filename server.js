@@ -187,7 +187,6 @@ app.get("/refresh_token", (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
-  console.log("User Data->> ", req.session.userData);
   if (req.session.userData) {
     res.json(req.session.userData);
   } else {

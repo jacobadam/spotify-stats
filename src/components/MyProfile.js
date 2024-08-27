@@ -1,44 +1,34 @@
 import "../css/MyProfile.css";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useAuth } from "./Authentication";
 import Login from "./Login";
+import SpotifyWebApi from "spotify-web-api-js";
+
+const spotifyApi = new SpotifyWebApi();
 
 const MyProfile = () => {
   const [accountData, setAccountData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const { loggedIn } = useAuth();
+  const { loggedIn, spotifyToken } = useAuth();
 
   useEffect(() => {
-    const fetchData = async () => {
-      const storedUserData = localStorage.getItem("userData");
-      console.log("Stored Data--->>>", storedUserData);
-      if (storedUserData) {
-        setAccountData(JSON.parse(storedUserData));
+    const getMyUserData = async () => {
+      try {
+        spotifyApi.setAccessToken(spotifyToken);
+        spotifyApi.getMe().then((response) => {
+          setAccountData(response);
+        });
+      } catch (error) {
+        setError(error);
+      } finally {
         setLoading(false);
-      } else {
-        try {
-          const baseUrl =
-            process.env.NODE_ENV === "production"
-              ? "https://listening-stats-jn-d508a73704b2.herokuapp.com"
-              : "http://localhost:8888";
-          const response = await axios.get(`${baseUrl}/profile`, {
-            withCredentials: true,
-          });
-          setAccountData(response.data);
-          localStorage.setItem("userData", JSON.stringify(response.data));
-        } catch (error) {
-          setError(error);
-        } finally {
-          setLoading(false);
-        }
       }
     };
 
-    fetchData();
-  }, []);
+    getMyUserData();
+  }, [spotifyToken]);
 
   if (loading) return <div className="loading">Loading...</div>;
   if (error) return <div className="error">Error: {error.message}</div>;
