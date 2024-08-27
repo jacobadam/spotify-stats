@@ -9,6 +9,12 @@
   min-height: 40px;
 }
 
+@media screen and (max-width: 576px) {
+  .appHeader {
+    padding: 20px 0 20px 20px;
+  }
+}
+
 .spotifyLogo {
   position: absolute;
   left: 50%;
