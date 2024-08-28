@@ -72,6 +72,7 @@ app.get("/login", (req, res) => {
         scope: scope,
         redirect_uri: redirect_uri,
         state: state,
+        show_dialog: true,
       })
   );
 });
@@ -192,6 +193,18 @@ app.get("/profile", (req, res) => {
   } else {
     res.status(404).json({ error: "User data not found" });
   }
+});
+
+app.post("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Failed to destroy session:", err);
+      return res.status(500).json({ error: "Failed to logout" });
+    }
+
+    res.clearCookie("connect.sid");
+    res.status(200).send("Logout successful");
+  });
 });
 
 app.get("*", (req, res) => {

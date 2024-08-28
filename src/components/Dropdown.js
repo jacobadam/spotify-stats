@@ -25,9 +25,21 @@ const AccountDropdown = () => {
     }, 300);
   };
 
-  const handleLogout = (e) => {
+  const handleLogout = async (e) => {
     e.preventDefault();
-    logout();
+
+    try {
+      await fetch("/logout", {
+        method: "POST",
+        credentials: "include",
+      });
+
+      logout();
+
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
   };
 
   useEffect(() => {
