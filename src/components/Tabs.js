@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/Tabs.css";
 import SpotifyWebApi from "spotify-web-api-js";
 import TopTracks from "./TopTracks";
@@ -8,9 +8,20 @@ import RecentlyPlayed from "./RecentlyPlayed";
 const spotifyApi = new SpotifyWebApi();
 
 function Tabs() {
+  const [activeTab, setActiveTab] = useState("topTracks");
   const [topTracks, setTopTracks] = useState([]);
   const [topArtists, setTopArtists] = useState([]);
   const [recentlyPlayed, setRecentlyPlayed] = useState([]);
+
+  useEffect(() => {
+    if (activeTab === "topTracks") {
+      getTopTracks();
+    } else if (activeTab === "topArtists") {
+      getMyTopArtists();
+    } else if (activeTab === "recentlyPlayed") {
+      getRecentlyPlayed();
+    }
+  }, [activeTab]);
 
   const getTopTracks = () => {
     spotifyApi.getMyTopTracks().then((response) => {
@@ -24,84 +35,63 @@ function Tabs() {
           topTracksData[i].artists[0].name = [...artistName].join(", ");
         }
       }
-      setTopTracks([...topTracksData]);
+      setTopTracks(topTracksData);
     });
   };
 
   const getMyTopArtists = () => {
     spotifyApi.getMyTopArtists().then((response) => {
       const topArtistData = response.items;
-      setTopArtists([...topArtistData]);
+      setTopArtists(topArtistData);
     });
   };
 
   const getRecentlyPlayed = () => {
     spotifyApi.getMyRecentlyPlayedTracks().then((response) => {
       const recentlyPlayed = response.items;
-      setRecentlyPlayed([...recentlyPlayed]);
+      setRecentlyPlayed(recentlyPlayed);
     });
   };
 
-  function changeTab(event, spotifyStat) {
-    if (spotifyStat === "topTracks") {
-      getTopTracks();
-    }
-
-    if (spotifyStat === "topArtists") {
-      getMyTopArtists();
-    }
-
-    if (spotifyStat === "recentlyPlayed") {
-      getRecentlyPlayed();
-    }
-
-    let i, tabcontent, tablinks;
-
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-    }
-
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].classList.remove("active");
-    }
-
-    event.currentTarget.classList.add("active");
-
-    document.getElementById(spotifyStat).style.display = "block";
-  }
+  const handleTabChange = (tab) => {
+    setActiveTab(tab);
+  };
 
   return (
     <div>
       <div className="tab">
         <button
-          className="tablinks"
+          className={`tablinks ${activeTab === "topTracks" ? "active" : ""}`}
           aria-label="top tracks"
-          onClick={(event) => changeTab(event, "topTracks")}
+          onClick={() => handleTabChange("topTracks")}
         >
           Top Tracks
         </button>
 
         <button
-          className="tablinks"
+          className={`tablinks ${activeTab === "topArtists" ? "active" : ""}`}
           aria-label="top artists"
-          onClick={(event) => changeTab(event, "topArtists")}
+          onClick={() => handleTabChange("topArtists")}
         >
           Top Artists
         </button>
+
         <button
-          className="tablinks"
+          className={`tablinks ${
+            activeTab === "recentlyPlayed" ? "active" : ""
+          }`}
           aria-label="recently played"
-          onClick={(event) => changeTab(event, "recentlyPlayed")}
+          onClick={() => handleTabChange("recentlyPlayed")}
         >
           Recently Played
         </button>
       </div>
 
-      <TopTracks topTracks={topTracks} />
-      <TopArtists topArtists={topArtists} />
-      <RecentlyPlayed recentlyPlayed={recentlyPlayed} />
+      {activeTab === "topTracks" && <TopTracks topTracks={topTracks} />}
+      {activeTab === "topArtists" && <TopArtists topArtists={topArtists} />}
+      {activeTab === "recentlyPlayed" && (
+        <RecentlyPlayed recentlyPlayed={recentlyPlayed} />
+      )}
     </div>
   );
 }
