@@ -58,7 +58,7 @@ tr {
   .recentlyPlayedTrackName,
   .recentlyPlayedArtistName,
   .recentlyPlayedTimePlayed {
-    font-size: 8px;
+    font-size: 10px;
     font-weight: normal;
   }
 
