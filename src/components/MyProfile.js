@@ -20,7 +20,11 @@ const MyProfile = () => {
         const response = await spotifyApi.getMe();
         setAccountData(response);
       } catch (error) {
-        setError(error);
+        if (error.status === 401) {
+          setError(new Error("Your session has expired. Please log in again."));
+        } else {
+          setError(new Error("An error occurred while fetching your profile."));
+        }
       } finally {
         setLoading(false);
       }
@@ -30,7 +34,16 @@ const MyProfile = () => {
   }, [spotifyToken]);
 
   if (loading) return <div className="loading">Loading...</div>;
-  if (error) return <div className="error">Error: {error.message}</div>;
+
+  if (error) {
+    console.log(error);
+    return (
+      <div className="error">
+        <p> {error.message}</p>
+        {!loggedIn && <Login />}
+      </div>
+    );
+  }
 
   return (
     <div>
