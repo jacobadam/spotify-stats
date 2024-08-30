@@ -36,7 +36,6 @@ const MyProfile = () => {
   if (loading) return <div className="loading">Loading...</div>;
 
   if (error) {
-    console.log(error);
     return (
       <div className="error">
         <p> {error.message}</p>
