@@ -17,9 +17,8 @@ const MyProfile = () => {
     const getMyUserData = async () => {
       try {
         spotifyApi.setAccessToken(spotifyToken);
-        spotifyApi.getMe().then((response) => {
-          setAccountData(response);
-        });
+        const response = await spotifyApi.getMe();
+        setAccountData(response);
       } catch (error) {
         setError(error);
       } finally {
