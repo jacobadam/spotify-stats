@@ -4,6 +4,7 @@ import HomePage from "./HomePage";
 import MyProfile from "./MyProfile";
 import Header from "./Header";
 import Login from "./Login";
+import NotFound from "./NotFound";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./Authentication";
 import ErrorBoundary from "./ErrorBoundary";
@@ -19,6 +20,7 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/profile" element={<MyProfile />} />
               <Route path="/login" element={<Login />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </div>
         </BrowserRouter>

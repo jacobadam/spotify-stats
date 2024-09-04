@@ -21,7 +21,7 @@ const MyProfile = () => {
         setAccountData(response);
       } catch (error) {
         if (error.status === 401) {
-          setError(new Error("Your session has expired. Please log in again."));
+          setError(new Error("You need to log in to access this page."));
         } else {
           setError(new Error("An error occurred while fetching your profile."));
         }

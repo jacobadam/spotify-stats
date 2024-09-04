@@ -16,7 +16,7 @@ export default function HomePage() {
             ranking.
           </div>
         ) : (
-          <p className="componentTitle">Listening Stats</p>
+          <h2 className="componentTitle">Listening Stats</h2>
         )}
         <Login page="homepage" />
         {loggedIn && (
