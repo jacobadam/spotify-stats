@@ -1,71 +1,59 @@
-# Getting Started with Create React App
+# Spotify Listening Stats
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This application allows users to view their Spotify listening stats, including **top tracks, top artists, and recently played songs**. Users can also access a **profile page** displaying their Spotify details.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Authentication with Spotify's Authorization Code Flow**
+- **Tabbed interface** for navigating between **Top Artists, Top Tracks, and Recently Played**
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Frontend:** React
+- **Backend:** Express
+- **Authentication:** Spotify API (Authorization Code Flow)
+- **State Management & Requests:** Axios, Express-Session
+- **Hosting:** Netlify (Frontend), Heroku (Backend)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Installation & Setup
 
-### `npm test`
+### Running Locally
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To run this project locally:
 
-### `npm run build`
+```bash
+# Clone the repository
+git clone https://github.com/jacobadam/spotify-app.git
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Navigate to the project folder
+cd spotify-app
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Install dependencies
+npm install
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Start the development server
+npm start
+```
 
-### `npm run eject`
+To build for production:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```bash
+npm run build
+```
 
 ### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- **Frontend:** Hosted on **Netlify**
+- **Backend:** Hosted on **Heroku**
 
-### `npm run build` fails to minify
+## Contact
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# spotify-recommender
+For any inquiries related to the development of this project, feel free to reach out:
+
+- **Email:** [jacobnevitt@gmail.com](mailto:jacobnevitt@gmail.com)
+- **LinkedIn:** [linkedin.com/in/jacobnevitt](https://www.linkedin.com/in/jacobnevitt/)
+- **GitHub:** [github.com/jacobadam](https://github.com/jacobadam)
+
+## Live Site
+
+The website is available at: **[listening-stats-jn.netlify.app](http://listening-stats-jn.netlify.app/)**
