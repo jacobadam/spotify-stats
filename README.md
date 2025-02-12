@@ -12,7 +12,7 @@ This application allows users to view their Spotify listening stats, including *
 - **Frontend:** React
 - **Backend:** Express
 - **Authentication:** Spotify API (Authorization Code Flow)
-- **State Management & Requests:** Axios, Express-Session
+- **State Management & Requests:** Express Session, Spotify API
 - **Hosting:** Netlify (Frontend), Heroku (Backend)
 
 ## Installation & Setup
